@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script    src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+<body>
+<div class="container" style="padding-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div th:if="${successMessage != null}" class="alert alert-success fade in" >
+                <span th:text="${successMessage}"></span>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            </div>
+
+            <p class="text-right"><a th:href="@{/add}" class="btn btn-info" >add new product</a></p>
+            <p class="text-center">List of Products</p>
+            <table  class="table  table-hover" >
+                <tbody>
+                <tr class="success">
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>PRICE</td>
+                    <td>DESCRIPTION</td>
+                    <td>ACTION</td>
+                </tr>
+                <tr th:each="product : ${list}">
+                    <td th:text="${product.id}"/>
+                    <td th:text="${product.name}"/>
+                    <td th:text="${product.price}"/>
+                    <td th:text="${product.description}"/>
+                    <td>
+                        <a th:href="@{'/update?id='+${product.id}}" class="btn btn-warning btn-xs" >update</a>
+                        <a th:href="@{'/delete?id='+${product.id}}" class="btn btn-danger btn-xs" >delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>
